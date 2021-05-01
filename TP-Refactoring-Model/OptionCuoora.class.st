@@ -1,9 +1,8 @@
 Class {
 	#name : #OptionCuoora,
-	#superclass : #Option,
+	#superclass : #QuestionRetriever,
 	#instVars : [
-		'isPopular',
-		'cuoora'
+		'isPopular'
 	],
 	#category : #'TP-Refactoring-Model'
 }

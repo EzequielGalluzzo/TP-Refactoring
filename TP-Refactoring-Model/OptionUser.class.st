@@ -1,10 +1,13 @@
 Class {
 	#name : #OptionUser,
-	#superclass : #Option,
+	#superclass : #QuestionRetriever,
+	#instVars : [
+		'collection'
+	],
 	#category : #'TP-Refactoring-Model'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #collection }
 OptionUser >> myQuestions [
 			^ self sortQuestions: (collection flatCollect: [ :each |each questions ]) 
 
