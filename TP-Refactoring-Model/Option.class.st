@@ -11,12 +11,12 @@ Option class >> newWith: aCollection [
 
 { #category : #abstract }
 Option >> myQuestions: aUser [
- ^ self subclassResponsibility 
+ self subclassResponsibility 
 ]
 
 { #category : #sorting }
 Option >> returnFiltered: aCollection of: aUser [
-	^ (aCollection temp last: (100 min: aCollection  size)) reject:[:q | q isUser: aUser].
+	^ (aCollection last: (100 min: aCollection  size)) reject:[:q | q isUser: aUser].
 ]
 
 { #category : #sorting }

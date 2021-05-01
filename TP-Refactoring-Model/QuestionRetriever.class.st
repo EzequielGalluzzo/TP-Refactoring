@@ -9,8 +9,8 @@ Class {
 }
 
 { #category : #'instance creation' }
-QuestionRetriever class >> new: cuoora [
-	^ self new cuoora: cuoora
+QuestionRetriever class >> new: anOption [
+	^ self new option: anOption
 ]
 
 { #category : #'instance creation' }
@@ -23,9 +23,9 @@ QuestionRetriever >> cuoora: aCuooraInstance [
 	cuoora := aCuooraInstance 
 ]
 
-{ #category : #initializing }
+{ #category : #'old - deprecated' }
 QuestionRetriever >> initialize [
-	option := #social
+	"option := #social"
 ]
 
 { #category : #accesing }
