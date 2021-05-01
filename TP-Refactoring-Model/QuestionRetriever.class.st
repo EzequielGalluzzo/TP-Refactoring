@@ -8,8 +8,8 @@ Class {
 }
 
 { #category : #'instance creation' }
-QuestionRetriever class >> new: anOption [
-	^ self new option: anOption
+QuestionRetriever class >> new: aCuoora [ 
+	^ self new withCuoora: aCuoora
 ]
 
 { #category : #'old - deprecated' }
@@ -17,7 +17,7 @@ QuestionRetriever >> cuoora: aCuooraInstance [
 	cuoora := aCuooraInstance 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #retrieving }
 QuestionRetriever >> getQuestions: aUser [
 	self subclassResponsibility 
 ]
@@ -40,4 +40,9 @@ QuestionRetriever >> retrieveQuestions: aUser [
 QuestionRetriever >> sortQuestions: questions [ 
 
  ^ questions asSortedCollection:[ :a :b | a positiveVotes size > b positiveVotes size]
+]
+
+{ #category : #accessing }
+QuestionRetriever >> withCuoora: aCuooraInstance [
+	cuoora := aCuooraInstance 
 ]
