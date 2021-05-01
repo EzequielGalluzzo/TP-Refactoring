@@ -2,7 +2,6 @@ Class {
 	#name : #QuestionRetriever,
 	#superclass : #Object,
 	#instVars : [
-		'option',
 		'cuoora'
 	],
 	#category : #'TP-Refactoring-Model'
@@ -13,14 +12,14 @@ QuestionRetriever class >> new: anOption [
 	^ self new option: anOption
 ]
 
-{ #category : #'instance creation' }
-QuestionRetriever class >> new: cuoora and: aSymbol [
-	^ self new cuoora: cuoora; option:aSymbol; yourself.
-]
-
-{ #category : #accesing }
+{ #category : #'old - deprecated' }
 QuestionRetriever >> cuoora: aCuooraInstance [
 	cuoora := aCuooraInstance 
+]
+
+{ #category : #'as yet unclassified' }
+QuestionRetriever >> getQuestions: aUser [
+	self subclassResponsibility 
 ]
 
 { #category : #'old - deprecated' }
@@ -28,12 +27,17 @@ QuestionRetriever >> initialize [
 	"option := #social"
 ]
 
-{ #category : #accesing }
-QuestionRetriever >> option: anOption [
-	option := anOption
-]
-
 { #category : #retrieving }
 QuestionRetriever >> retrieveQuestions: aUser [
-	^ option myQuestions: aUser
+  |qRet|
+	qRet := OrderedCollection new.
+   qRet := self getQuestions: aUser. 
+   qRet := qRet last: (100 min: qRet size).
+	^qRet reject:[:q | q user = aUser].
+]
+
+{ #category : #sorting }
+QuestionRetriever >> sortQuestions: questions [ 
+
+ ^ questions asSortedCollection:[ :a :b | a positiveVotes size > b positiveVotes size]
 ]
