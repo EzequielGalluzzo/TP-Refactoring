@@ -1,9 +1,6 @@
 Class {
 	#name : #Option,
 	#superclass : #Object,
-	#instVars : [
-		'collection'
-	],
 	#category : #'TP-Refactoring-Model'
 }
 
@@ -13,18 +10,17 @@ Option class >> newWith: aCollection [
 ]
 
 { #category : #abstract }
-Option >> myQuestions [
- self subclassResponsibility 
+Option >> myQuestions: aUser [
+ ^ self subclassResponsibility 
+]
+
+{ #category : #sorting }
+Option >> returnFiltered: aCollection of: aUser [
+	^ (aCollection temp last: (100 min: aCollection  size)) reject:[:q | q isUser: aUser].
 ]
 
 { #category : #sorting }
 Option >> sortQuestions: questions [ 
 
  ^ questions asSortedCollection:[ :a :b | a positiveVotes size > b positiveVotes size]
-]
-
-{ #category : #initialization }
-Option >> withCollection: aCollection [
-
-	collection:= aCollection 
 ]
