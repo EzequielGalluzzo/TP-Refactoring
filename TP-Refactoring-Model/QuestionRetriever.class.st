@@ -37,6 +37,7 @@ QuestionRetriever >> option: anOption [
 QuestionRetriever >> retrieveQuestions: aUser [
 	| qRet temp followingCol topicsCol newsCol popularTCol averageVotes|
 	qRet := OrderedCollection new.
+	"option myQuestions"
 	option = #social ifTrue:[
 			followingCol := OrderedCollection new.
 			aUser following do:[ :follow | followingCol addAll: follow questions ].
@@ -50,14 +51,14 @@ QuestionRetriever >> retrieveQuestions: aUser [
 			temp := topicsCol asSortedCollection:[ :a :b | a positiveVotes size > b positiveVotes size ].
 			qRet := temp last: (100 min: temp size).
 		].
-	
+""	
 	option = #news ifTrue:[
 			newsCol := OrderedCollection new.
 			cuoora questions do:[:q | (q timestamp asDate = Date today) ifTrue: [newsCol add: q]].
 			temp := newsCol asSortedCollection:[ :a :b | a positiveVotes size > b positiveVotes size ].
 			qRet := temp last: (100 min: temp size).
 		].
-
+""
 	option = #popularToday ifTrue:[
 			popularTCol := OrderedCollection new.
 			cuoora questions do:[:q | (q timestamp asDate = Date today) ifTrue: [popularTCol add: q]].

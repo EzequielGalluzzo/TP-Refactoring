@@ -62,6 +62,11 @@ Question >> initialize [
 	timestamp := DateAndTime now.
 ]
 
+{ #category : #testing }
+Question >> isFromToday [
+^ timestamp asDate = Date today	
+]
+
 { #category : #'as yet unclassified' }
 Question >> negativeVotes [
 	| r |

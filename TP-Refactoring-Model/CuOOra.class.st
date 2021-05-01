@@ -39,9 +39,21 @@ CuOOra >> initialize [
 	questions := OrderedCollection new
 ]
 
+{ #category : #collection }
+CuOOra >> popularToday [
+	|averageVotes|
+	 averageVotes:= (questions sum: [:q | q positiveVotes size ]) / self todaysQuestions size.
+	^ self todaysQuestions select:[:q | q positiveVotes size >= averageVotes ].
+]
+
 { #category : #accessing }
 CuOOra >> questions [
 	^ questions
+]
+
+{ #category : #collection }
+CuOOra >> todaysQuestions [
+	^  questions select: [ :q | q isFromToday  ]
 ]
 
 { #category : #accessing }
