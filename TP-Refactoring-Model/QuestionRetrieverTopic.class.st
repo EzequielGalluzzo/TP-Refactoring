@@ -4,7 +4,7 @@ Class {
 	#category : #'TP-Refactoring-Model'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #adapting }
 QuestionRetrieverTopic >> getQuestions: aUser [
-		^ self sortQuestions: (aUser topics flatCollect: [ :each |each questions ]) 
+		^ self sortQuestions: (aUser myInterests flatCollect: [ :each |each questions ]) 
 ]

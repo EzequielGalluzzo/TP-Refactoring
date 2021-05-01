@@ -4,7 +4,7 @@ Class {
 	#category : #'TP-Refactoring-Model'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #adapting }
 QuestionRetrieverNews >> getQuestions: aUser [
 	^ self sortQuestions: (cuoora todaysQuestions)
 ]
