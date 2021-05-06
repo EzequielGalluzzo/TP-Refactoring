@@ -76,11 +76,6 @@ User >> isUser: aUser [
 ]
 
 { #category : #accessing }
-User >> myInterests [
-	^ topics 
-]
-
-{ #category : #accessing }
 User >> password [
 	^ password
 ]
@@ -128,9 +123,4 @@ User >> username: anObject [
 { #category : #accessing }
 User >> votes [
 	^ votes
-]
-
-{ #category : #accessing }
-User >> whoIFollow [
-	^ following
 ]

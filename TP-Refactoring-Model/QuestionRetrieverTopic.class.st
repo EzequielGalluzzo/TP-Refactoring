@@ -6,5 +6,5 @@ Class {
 
 { #category : #adapting }
 QuestionRetrieverTopic >> getQuestions: aUser [
-		^ self sortQuestions: (aUser myInterests flatCollect: [ :each |each questions ]) 
+		^ self sortQuestions: (aUser topics flatCollect: [ :each |each questions ]) 
 ]

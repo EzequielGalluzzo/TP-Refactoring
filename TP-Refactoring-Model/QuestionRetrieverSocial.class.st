@@ -6,5 +6,5 @@ Class {
 
 { #category : #adapting }
 QuestionRetrieverSocial >> getQuestions: aUser [
-		^ self sortQuestions: (aUser whoIFollow flatCollect: [ :each |each questions ]) 
+		^ self sortQuestions: (aUser following flatCollect: [ :each |each questions ]) 
 ]
