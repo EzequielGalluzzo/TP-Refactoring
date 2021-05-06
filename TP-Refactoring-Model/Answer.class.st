@@ -49,18 +49,12 @@ Answer >> isTopAnswer [
 
 { #category : #'as yet unclassified' }
 Answer >> negativeVotes [
-	| r |
-	r := OrderedCollection new.
-	votes do:[:vote | vote isLike ifFalse:[r add: vote]].
-	^r
+	^votes select: [ :vote |  vote not isLike ].
 ]
 
 { #category : #'as yet unclassified' }
 Answer >> positiveVotes [
-	| r |
-	r := OrderedCollection new.
-	votes do:[:vote | vote isLike ifTrue:[r add: vote]].
-	^r
+	^votes select: [ :vote | vote isLike ].
 ]
 
 { #category : #private }
