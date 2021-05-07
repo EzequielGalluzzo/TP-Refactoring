@@ -28,12 +28,22 @@ QuestionRetriever >> initialize [
 ]
 
 { #category : #retrieving }
+QuestionRetriever >> removeLastHundred: qRet [
+	^ qRet last: (100 min: qRet size)
+]
+
+{ #category : #retrieving }
+QuestionRetriever >> removeUserQuestions: aUser fromQuestions: qRet [
+	^ qRet reject: [ :q | q isOfUser: aUser ]
+]
+
+{ #category : #retrieving }
 QuestionRetriever >> retrieveQuestions: aUser [
-  |qRet|
-	qRet := OrderedCollection new.
-   qRet := self getQuestions: aUser. 
-   qRet := qRet last: (100 min: qRet size).
-	^qRet reject:[:q | q user = aUser].
+	| qRet |
+	qRet := self getQuestions: aUser.
+	qRet := self removeLastHundred: qRet.
+	qRet := self removeUserQuestions: aUser fromQuestions: qRet.
+	^ qRet
 ]
 
 { #category : #sorting }

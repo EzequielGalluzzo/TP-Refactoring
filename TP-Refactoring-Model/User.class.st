@@ -70,11 +70,6 @@ User >> initialize [
 	votes := OrderedCollection new.
 ]
 
-{ #category : #testing }
-User >> isUser: aUser [
-	^ self = aUser
-]
-
 { #category : #accessing }
 User >> password [
 	^ password

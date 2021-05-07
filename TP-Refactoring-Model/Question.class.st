@@ -1,35 +1,34 @@
 Class {
 	#name : #Question,
-	#superclass : #Object,
+	#superclass : #Publication,
 	#instVars : [
 		'title',
 		'answers',
-		'topics',
-		'timestamp',
-		'user',
-		'votes',
-		'description'
+		'topics'
 	],
 	#category : #'TP-Refactoring-Model'
 }
 
 { #category : #'instance creation' }
 Question class >> newWithTitle: title description: aDescription user: aUser [
-	^ self new
+ 	|question|
+	question:= self setUser: aUser.
+	^ question
 		title: title;
 		description: aDescription;
-		user: aUser;
 		yourself.
 ]
 
 { #category : #'instance creation' }
-Question class >> newWithTitle: title description: aDescription user: aUser topic: aTopic [
-	^ self new
-		title: title;
-		description: aDescription;
-		addTopic: aTopic;
-		user: aUser;
-		yourself.
+Question class >> newWithTitle: aTitle description: aDescription user: aUser topic: aTopic [
+	|question| 
+	question := self setUser: aUser. 
+	^ question 
+	title: aTitle;
+	description: aDescription;
+	addTopic: aTopic;
+	yourself
+
 ]
 
 { #category : #adding }
@@ -39,27 +38,11 @@ Question >> addTopic: aTopic [
 
 ]
 
-{ #category : #adding }
-Question >> addVote: aVote [
-	votes add: aVote
-]
-
-{ #category : #accessing }
-Question >> description [
-	^ description
-]
-
-{ #category : #private }
-Question >> description: anObject [
-	description := anObject
-]
-
 { #category : #'initalize-release' }
 Question >> initialize [
+	super initialize.
 	answers := OrderedCollection new.
 	topics := OrderedCollection new.
-	votes := OrderedCollection new.
-	timestamp := DateAndTime now.
 ]
 
 { #category : #testing }
@@ -67,24 +50,9 @@ Question >> isFromToday [
 ^ timestamp asDate = Date today	
 ]
 
-{ #category : #'as yet unclassified' }
-Question >> negativeVotes [
-	^votes select: [ :vote |  vote not isLike ].
-]
-
-{ #category : #'as yet unclassified' }
-Question >> positiveVotes [
-	^votes select: [ :vote |  vote  isLike ].
-]
-
-{ #category : #accessing }
-Question >> timestamp [
-	^ timestamp
-]
-
-{ #category : #private }
-Question >> timestamp: anObject [
-	timestamp := anObject
+{ #category : #testing }
+Question >> isOfUser: aUser [
+	^ user = aUser
 ]
 
 { #category : #accessing }
@@ -100,19 +68,4 @@ Question >> title: aTitle [
 { #category : #accessing }
 Question >> topics [
 	^topics 
-]
-
-{ #category : #accessing }
-Question >> user [
-	^ user
-]
-
-{ #category : #private }
-Question >> user: anObject [
-	user := anObject
-]
-
-{ #category : #accessing }
-Question >> votes [
-	^ votes
 ]
